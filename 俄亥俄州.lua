@@ -32,24 +32,6 @@ about:Label("欢迎使用🤓")
 local UITab355 = win:Tab("『人物』",'7734068321')
 
 local about = UITab355:section("『LENG script』",true)
-
-about:Slider('移动速度', 'Sliderflag', 16, 16, 200, false, function(Value)
-        local plr = game['Players ']
-        local lp = plr.LocalPlayer
-        local cha = lp.Character
-        local hum = cha.Humanoid
-        spawn(function()
-            while task.wait() do
-                hum.WalkSpeed = Value
-            end
-        end)
-    end)
-about:Slider('缩放距离', 'ZOOOOOM OUT!',  128, 128, 200000,false, function(value)
-    game:GetService("Players").LocalPlayer.CameraMaxZoomDistance = value
-    end)
-about:Slider('设置重力（正常196.2）', 'Sliderflag', 196.2, 0.1, 1000,false, function(Value)
-    game.Workspace.Gravity = Value
-    end)
     
 about:Textbox("快速跑步（死后重置）建议用2", "tpwalking", "输入", function(king)
 local tspeed = king
