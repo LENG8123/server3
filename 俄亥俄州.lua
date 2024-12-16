@@ -1,20 +1,52 @@
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "冷脚本"; Text ="正在启动Ohio"; Duration = 1; })
- wait(2)
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "冷脚本"; Text ="5"; Duration = 1; })
- wait(2)
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "冷脚本"; Text ="4"; Duration = 1; })
- wait(2)  
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "冷脚本"; Text ="3"; Duration = 1; })
- wait(2)
- 
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "冷脚本"; Text ="2"; Duration = 1; })
- wait(2)
- 
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "冷脚本"; Text ="1"; Duration = 2; })
+local playerGui = game.Players.LocalPlayer.PlayerGui
+
+local fpsGui = Instance.new("ScreenGui")
+fpsGui.Name = "FpsGui"
+fpsGui.Parent = playerGui
+
+local fpsLabel = Instance.new("TextLabel")
+fpsLabel.Name = "FpsLabel"
+fpsLabel.Size = UDim2.new(0, 100, 0, 20)
+fpsLabel.Position = UDim2.new(0, 20, 0, 20)
+fpsLabel.BackgroundColor3 = Color3.new(0, 0, 0)
+fpsLabel.TextColor3 = Color3.new(1, 1, 1)
+fpsLabel.Font = Enum.Font.SourceSans
+fpsLabel.FontSize = Enum.FontSize.Size14
+fpsLabel.Text = "帧数: "
+fpsLabel.Parent = fpsGui
+
+local lastUpdate = tick()
+
+local fps = 0
+
+local function updateFpsCounter()
+    local deltaTime = tick() - lastUpdate
+    lastUpdate = tick()
+
+    fps = math.floor(1 / deltaTime)
+
+    fpsLabel.Text = "帧数: " .. fps
+end
+
+game:GetService("RunService").RenderStepped:Connect(updateFpsCounter)
+
+local function HeartbeatUpdate()
+	LastIteration = tick()
+	for Index = #FrameUpdateTable, 1, -1 do
+		FrameUpdateTable[Index + 1] = (FrameUpdateTable[Index] >= LastIteration - 1) and FrameUpdateTable[Index] or nil
+	end
+	FrameUpdateTable[1] = LastIteration
+	local CurrentFPS = (tick() - Start >= 1 and #FrameUpdateTable) or (#FrameUpdateTable / (tick() - Start))
+	CurrentFPS = CurrentFPS - CurrentFPS % 1
+	FpsLabel.Text = ("小冷时间 = "..os.date("%H").."时"..os.date("%M").."分"..os.date("%S"))
+end
+Start = tick()
+Heartbeat:Connect(HeartbeatUpdate)
+
 local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/LENG8123/UI/refs/heads/main/%E5%86%B7library.lua"))()        
 local win = ui:new("冷脚本")
 --
-local UITab1 = win:Tab("『信息』",'16060333448')
+local UITab1 = win:Tab("『信息』",'7734068321')
 
 local about = UITab1:section("『作者信息』",false)
 
