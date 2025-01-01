@@ -207,7 +207,7 @@ local Options = getgenv().Linoria.Options
 local Toggles = getgenv().Linoria.Toggles
 
 local Window = Library:CreateWindow({
-	Title = "mspaint v2 汉化by:du8",
+	Title = "mapaint V2 ｜ 汉化by:冷",
 	Center = true,
 	AutoShow = true,
 	Resizable = true,
